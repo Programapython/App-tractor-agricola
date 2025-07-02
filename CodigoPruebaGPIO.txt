@@ -1,0 +1,33 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM) #Define el modo de numeracion
+#GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False) #Desactiva mensajes de alerta
+
+LED = 5 #GPIO unido al led
+
+GPIO.setup(LED, GPIO.OUT) #Definimos LED como salida
+
+#state = GPIO.input(LED)
+
+def main():
+   while True:
+      GPIO.output(LED,GPIO.LOW)
+      time.sleep(0.5)
+      GPIO.output(LED,GPIO.HIGH)
+      time.sleep(0.5)
+
+
+   #if state==True:
+      #GPIO.output(LED,GPIO.LOW)
+      #GPIO.output(LED,False)
+      #state = False
+   #else:
+      #GPIO.output(LED,GPIO.HIGH)
+      #GPIO.output(LED,True)
+      #state = True
+
+if __name__ == '__main__' :
+   main()
++
