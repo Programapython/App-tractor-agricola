@@ -80,7 +80,7 @@ def recibirData(cadenaIn):
     data[2] = int(cadenaIn[1])
     data[3] = int(cadenaIn[2])
 
-    for i in range(6):
+    for i in range(4):
         if cadenaIn[i+3] <= 400 and dataAnt[4] == 1:
             data[i+5] = 0
         else:
