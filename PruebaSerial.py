@@ -87,6 +87,7 @@ def recibirData(cadenaIn):
             data[i+5] = 1
     
     if data[0] == 1:
+        time.sleep(5)
         pwm_bombas[0].ChangeDutyCycle(30)
         pwm_bombas[1].ChangeDutyCycle(30)
     elif data[0] == 0:
