@@ -1,14 +1,19 @@
+#include <Servo.h>
+
+Servo myservo1; Servo myservo2;
+
 // Pines de componentes
 const int SEN_NIVEL[3] = {2,3,4};
 const int SEN_DIST[6] = {A0,A1,A2,A3,A4,A5};
 const int VALVULAS[6] = {5, 6, 7, 8, 9, 12};
 const int SERVOS[2] = {10,11};
+const int MOTOR = 1;
 // Variables a controlar
 bool NIVELES[3] = {LOW, LOW, LOW};
 int DISTANCIAS[6] = {0, 0, 0, 0, 0, 0};
-//////////////////////{VAL1, VAL2, VAL3, VAL4, VAL5, VAL6, SERVO1, SERVO2, MOT1}
-//bool valuesAnt[9] = {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH};
-bool values[9] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+//////////////////////{START, VAL1, VAL2, VAL3, VAL4, VAL5, VAL6}
+bool antValues[7] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW};
+bool values[7] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW};
 //Retardo a utilizar
 int dlay = 100;
 
@@ -21,19 +26,26 @@ int ADC_promedio(int pin, int n){
 }
 
 int asignarValores(){
-  for (int i=0; i<6; i++){digitalWrite(VALVULAS[i], values[i]);}
-  for (int i=6; i<8; i++){
-    if (values[i]){analogWrite(SERVOS[i], 100);}
-    else {digitalWrite(SERVOS[i], 50);}
+  for (int i=0; i<6; i++){digitalWrite(VALVULAS[i], values[i+1]);}
+  if (values[0] == 0 && antValues[0] == 1){myservo.write(0);}
+  else if (values[0] == 1 && antValues[0] == 0) {myservo1.write(90); myservo2.write(90);
+  delay(5); digitalWrite(MOTOR, HIGH);}
+
+  for (int i=0;i<6;i++){
+    antValues[i] == values[i];
   }
 }
 
 void setup(){
+  myservo1.attach(SERVOS[0]); myservo2.attach(SERVOS[1]);
   Serial.begin(9600);
   for (int i = 0; i<3; i++){
     pinMode(SEN_NIVEL[i], INPUT_PULLUP);}
   for (int i = 0; i<6; i++){
     pinMode(SEN_DIST[i], INPUT);}
+
+  myservo.write(0);
+  myservo.write(0);
 }
 
 void loop(){
@@ -56,7 +68,7 @@ void loop(){
     //convertir la cadena en un array
     int index = 0;
     char *ptr = strtok((char*)input.c_str(), ",");
-    while (ptr != NULL && index < 9) {
+    while (ptr != NULL && index < 7) {
       values[index++] = atoi(ptr);
       ptr = strtok(NULL, ",");
     }

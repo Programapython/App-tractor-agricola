@@ -220,7 +220,7 @@ void conex() {
     if (values[0]){
       tft.fillRect(290, 70, 160, 30, BLACK); tft.fillRect(290, 150, 160, 30, BLACK);
       tft.setTextColor(GREEN); tft.setCursor(280, 70); tft.print(" ACTIVADO ...");
-      tft.setTextColor(GREEN); tft.setCursor(280, 150); tft.print(" 10 m/s");
+      tft.setTextColor(GREEN); tft.setCursor(280, 150); tft.print(" ... m/s");
     } else {
       tft.fillRect(290, 70, 160, 30, BLACK); tft.fillRect(290, 150, 160, 30, BLACK);
       tft.setTextColor(RED); tft.setCursor(280, 70); tft.print(" DETENIDO ...");
