@@ -1,18 +1,6 @@
 import serial, time
 import anvil.server
 import threading
-import RPi.GPIO as GPIO
-
-#Configurcion GPIO
-GPIO.setmode(GPIO.BCM)
-
-#Configuracion de los pines PWM de bomba
-pin_bombas = [12, 13]
-pwm_bombas = []
-for i in range(2):
-    GPIO.setup(pin_bombas[i], GPIO.OUT)
-    pwm_bombas.append(pin_bombas, 1000)
-    pwm_bombas.start(0)
 
 #Retraso de inicio
 time.sleep(5)
@@ -85,14 +73,6 @@ def recibirData(cadenaIn):
             data[i+5] = 0
         else:
             data[i+5] = 1
-    
-    if data[0] == 1:
-        time.sleep(5)
-        pwm_bombas[0].ChangeDutyCycle(30)
-        pwm_bombas[1].ChangeDutyCycle(30)
-    elif data[0] == 0:
-        pwm_bombas[0].ChangeDutyCycle(0)
-        pwm_bombas[1].ChangeDutyCycle(0)
 
 '''
 def recibirAnvil(orden):
