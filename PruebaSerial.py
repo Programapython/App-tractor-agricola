@@ -162,7 +162,7 @@ def leer_anvil():
 
 # Conectar a ambos Arduino 
 ardUno = conex_arduino("ArduinoUno", "#/dev/ttyACM0") #/dev/ttyACM0 COM11
-ardNano = conex_arduino("ArduinoNano", "#/dev/ttyACM1") #/dev/ttyACM1 COM9
+ardNano = conex_arduino("ArduinoNano", "#/dev/ttyUSB0") #/dev/ttyUSB0 COM9
 
 # Hilos para cada Arduino
 hiloUno = threading.Thread(target=leer_arduino_uno)
