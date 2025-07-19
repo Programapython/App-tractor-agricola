@@ -64,16 +64,17 @@ def emitirData(arduino, n=1):
 
 def recibirData(cadenaIn):
     cadenaIn = cadenaIn.split(",")
+    print(cadenaIn)
     data[1] = int(cadenaIn[0])
     data[2] = int(cadenaIn[1])
     data[3] = int(cadenaIn[2])
-
+'''
     for i in range(4):
         if int(cadenaIn[i+3]) <= 400 and dataAnt[4] == 1:
             data[i+5] = 0
         else:
             data[i+5] = 1
-
+'''
 '''
 def recibirAnvil(orden):
     if orden == "s":
